@@ -347,7 +347,29 @@ a.link--text {
 
 .rich-text__buttons {
   margin-top: 2.8rem;
-  gap: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem 2.4rem;
+}
+
+/* Buttons size to their label rather than stretching the column. */
+.rich-text .button,
+.rich-text__buttons .button {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+/* A link with no destination is faded by Dawn. Until the manifesto and
+   policy pages exist, make that read as a quiet secondary link rather than
+   a broken button. */
+.rich-text__buttons .button[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: default;
 }
 
 /* The manifesto pull-quote is the one scheme-2 block on the homepage.
