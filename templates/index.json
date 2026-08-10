@@ -51,6 +51,23 @@
         "padding_bottom": 24
       }
     },
+    "image_banner_mTKUN9": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Living_room.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "how_we_work": {
       "type": "multicolumn",
       "blocks": {
@@ -212,6 +229,7 @@
   },
   "order": [
     "hero",
+    "image_banner_mTKUN9",
     "how_we_work",
     "featured_collection",
     "promise",
