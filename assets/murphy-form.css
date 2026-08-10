@@ -1,4 +1,22 @@
 /* ==========================================================================
+   TEMPORARY DIAGNOSTIC BLOCK — DELETE THIS ONCE WE'VE CONFIRMED IT WORKS
+   If you see an orange bar across the top of the store, this file is loading.
+   If you don't, it isn't. That's the whole purpose of these 12 lines.
+   ========================================================================== */
+body::before {
+  content: 'MURPHY & FORM STYLESHEET IS LOADING';
+  display: block;
+  background: #B4552D;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 12px 8px;
+  font: 600 13px/1.2 -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.14em;
+  position: relative;
+  z-index: 99999;
+}
+
+/* ==========================================================================
    Murphy & Form — brand layer for Dawn
    --------------------------------------------------------------------------
    Loaded after base.css so these rules win. This file changes typography,
