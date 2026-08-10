@@ -1,51 +1,98 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "rich-text",
       "blocks": {
-        "heading": {
+        "hero_heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest things",
+            "heading": "Exactly what we promised.",
             "heading_size": "h0"
           }
         },
-        "button": {
-          "type": "buttons",
+        "hero_text": {
+          "type": "text",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
+            "text": "<p>Solid hardwood furniture, made by hand in New Braunfels, Texas. Made to order — and shipped in days, not months.</p>"
+          }
+        },
+        "hero_buttons": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop the collection",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "button_label_2": "Read our manifesto",
             "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_style_secondary_2": true
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "hero_heading",
+        "hero_text",
+        "hero_buttons"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 72
+      }
+    },
+    "how_we_work": {
+      "type": "multicolumn",
+      "blocks": {
+        "materials": {
+          "type": "column",
+          "settings": {
+            "title": "Honest materials",
+            "text": "<p>Solid American hardwood — maple, walnut, mahogany — from sustainably managed US forests. Finished with Odie's Universal Oil: food safe, solvent free, no heavy metals. Every material is listed on every product page, including the ones that aren't glamorous.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "photographs": {
+          "type": "column",
+          "settings": {
+            "title": "Truthful photographs",
+            "text": "<p>What you see is the piece you get. Real wood, real grain, real light. We don't render, we don't retouch away a knot, and we show the variation you should expect — because the variation is the point.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "speed": {
+          "type": "column",
+          "settings": {
+            "title": "Made to order, shipped in days",
+            "text": "<p>Most makers quote two to three months. Small pieces leave our shop within three business days, large pieces within ten. Made by hand, one at a time, and still on your floor this month.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "materials",
+        "photographs",
+        "speed"
+      ],
+      "settings": {
+        "title": "How we work",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "featured_collection": {
@@ -53,7 +100,7 @@
       "settings": {
         "collection": "all",
         "products_to_show": 8,
-        "title": "Featured products",
+        "title": "Recent work",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
@@ -62,9 +109,9 @@
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "outline",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -72,13 +119,93 @@
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "promise": {
+      "type": "rich-text",
+      "blocks": {
+        "promise_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "If it isn't right, it isn't right.",
+            "heading_size": "h1"
+          }
+        },
+        "promise_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every piece is inspected before it's packed. If yours arrives damaged, or it isn't what the page described, tell us and we'll make it right.</p><p>You cancel free until we start cutting. After that we ask only for the cost of the wood — your species, in your size, already bought and cut for you. Nothing beyond that. No restocking fee.</p><p>We'd rather lose the sale than lose your trust.</p>"
+          }
+        },
+        "promise_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shipping and returns",
+            "button_link": "",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "promise_heading",
+        "promise_text",
+        "promise_button"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
+    "manifesto": {
+      "type": "rich-text",
+      "blocks": {
+        "manifesto_quote": {
+          "type": "heading",
+          "settings": {
+            "heading": "Trust is our most valuable product. Every decision we make either earns it or spends it.",
+            "heading_size": "h1"
+          }
+        },
+        "manifesto_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Read the full manifesto",
+            "button_link": "",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "manifesto_quote",
+        "manifesto_button"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "how_we_work",
+    "featured_collection",
+    "promise",
+    "manifesto"
   ]
 }
