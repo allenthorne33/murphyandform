@@ -42,7 +42,6 @@
         "hero_text",
         "hero_buttons"
       ],
-      "disabled": true,
       "settings": {
         "desktop_content_position": "left",
         "content_alignment": "left",
