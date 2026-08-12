@@ -31,7 +31,7 @@
             "button_label": "Shop the collection",
             "button_link": "shopify://collections/all",
             "button_style_secondary": false,
-            "button_label_2": "Read our manifesto",
+            "button_label_2": "What we believe",
             "button_link_2": "",
             "button_style_secondary_2": true
           }
@@ -191,20 +191,20 @@
         "padding_bottom": 88
       }
     },
-    "manifesto": {
+    "beliefs": {
       "type": "rich-text",
       "blocks": {
-        "manifesto_quote": {
+        "beliefs_quote": {
           "type": "heading",
           "settings": {
             "heading": "Trust is our most valuable product. Every decision we make either earns it or spends it.",
             "heading_size": "h1"
           }
         },
-        "manifesto_button": {
+        "beliefs_button": {
           "type": "button",
           "settings": {
-            "button_label": "Read the full manifesto",
+            "button_label": "Read what we believe",
             "button_link": "",
             "button_style_secondary": true,
             "button_label_2": "",
@@ -214,8 +214,8 @@
         }
       },
       "block_order": [
-        "manifesto_quote",
-        "manifesto_button"
+        "beliefs_quote",
+        "beliefs_button"
       ],
       "settings": {
         "desktop_content_position": "left",
@@ -233,6 +233,6 @@
     "how_we_work",
     "featured_collection",
     "promise",
-    "manifesto"
+    "beliefs"
   ]
 }
