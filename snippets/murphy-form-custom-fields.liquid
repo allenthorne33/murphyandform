@@ -312,23 +312,53 @@
         document.querySelectorAll('[data-mf-fields]').forEach(refresh);
       }
 
-      /* Delegated listeners, so everything keeps working after the theme
-         re-renders the variant picker. --------------------------------- */
-      document.addEventListener('change', function (event) {
-        if (event.target.closest('[data-mf-fields]')) return;
-        refreshAll();
-      });
+      function isOurField(event) {
+        var t = event.target;
+        return !!(t && t.closest && t.closest('[data-mf-fields]'));
+      }
 
-      document.addEventListener('input', function (event) {
-        var field = event.target.closest('[data-mf-field]');
-        if (!field) return;
-        updateCount(field);
-        if (event.target.value.trim()) {
-          var error = field.querySelector('[data-mf-error]');
-          if (error) error.hidden = true;
-          event.target.removeAttribute('aria-invalid');
-        }
-      });
+      /* Delegated listeners, so everything keeps working after the theme
+         re-renders the variant picker.
+
+         Both run in the CAPTURE phase, which matters. Dawn's <product-info>
+         element listens for change events on itself, and it wraps this form.
+         Left alone, typing a name and tabbing out sends a change event up to
+         it, Dawn reads it as a variant change, finds no variant matching a
+         name field, and flips Add to cart to "Sold out".
+
+         Capture runs from the document down, so we see the event before
+         <product-info> does and stop it there. Variant changes are untouched
+         and still bubble normally. ------------------------------------- */
+      document.addEventListener(
+        'change',
+        function (event) {
+          if (isOurField(event)) {
+            event.stopPropagation();
+            return;
+          }
+          refreshAll();
+        },
+        true
+      );
+
+      document.addEventListener(
+        'input',
+        function (event) {
+          if (!isOurField(event)) return;
+          event.stopPropagation();
+
+          var field = event.target.closest('[data-mf-field]');
+          if (!field) return;
+
+          updateCount(field);
+          if (event.target.value.trim()) {
+            var error = field.querySelector('[data-mf-error]');
+            if (error) error.hidden = true;
+            event.target.removeAttribute('aria-invalid');
+          }
+        },
+        true
+      );
 
       /* Validation. The theme's form carries novalidate and handles its own
          submit, so this runs in the capture phase on document — which fires
