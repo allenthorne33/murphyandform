@@ -386,7 +386,7 @@ a.link--text {
   flex: 0 0 auto;
 }
 
-/* A link with no destination is faded by Dawn. Until the manifesto and
+/* A link with no destination is faded by Dawn. Until the what we believe and
    policy pages exist, make that read as a quiet secondary link rather than
    a broken button. */
 .rich-text__buttons .button[aria-disabled='true'] {
@@ -394,7 +394,7 @@ a.link--text {
   cursor: default;
 }
 
-/* The manifesto pull-quote is the one scheme-2 block on the homepage.
+/* The what we believe pull-quote is the one scheme-2 block on the homepage.
    This is where the serif earns its keep. --------------------------------- */
 .rich-text.color-scheme-2 .rich-text__heading {
   font-family: var(--font-accent-family);
