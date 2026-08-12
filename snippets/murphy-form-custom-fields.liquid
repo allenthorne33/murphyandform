@@ -1,0 +1,380 @@
+{% comment %}
+  ==========================================================================
+  Murphy & Form — custom text fields (line item properties)
+  --------------------------------------------------------------------------
+  Captures the two things a customer has to tell us that a dropdown can't:
+
+    1. Engraving text  — what to actually carve
+    2. Custom height   — the measurement, in inches
+
+  Whatever the customer types is attached to the order as a line item
+  property. It shows in the cart, in the order confirmation email, and in
+  the Shopify order screen when the piece is being built.
+
+  HOW IT DECIDES WHAT TO SHOW
+  It reads the product's own options. No tagging or per-product setup:
+
+    - An option whose name contains "engrav"  -> engraving field appears,
+      and disappears when "No Engraving" is selected. Its label, help text
+      and length limit change to suit the design chosen.
+    - An option whose name contains "height"  -> height field appears only
+      when a value containing "custom" is selected, and stays hidden on the
+      standard heights.
+
+  Override, for products with no matching option (the cutting board set,
+  ring toss): add the tag  custom-engraving  or  custom-height  in Shopify.
+
+  Safe to remove. Delete this file and the render line in buy-buttons.liquid
+  and the product page returns to stock Dawn.
+  ==========================================================================
+{% endcomment %}
+
+{%- liquid
+  assign mf_engraving = false
+  assign mf_height = false
+
+  for mf_opt in product.options_with_values
+    assign mf_opt_name = mf_opt.name | downcase
+
+    if mf_opt_name contains 'engrav'
+      assign mf_engraving = true
+    endif
+
+    if mf_opt_name contains 'height'
+      assign mf_height = true
+    endif
+  endfor
+
+  if product.tags contains 'custom-engraving'
+    assign mf_engraving = true
+  endif
+  if product.tags contains 'custom-height'
+    assign mf_height = true
+  endif
+
+  assign mf_uid = section_id | default: product.id
+-%}
+
+{%- if mf_engraving or mf_height -%}
+  <div class="mf-fields" data-mf-fields>
+    {%- if mf_engraving -%}
+      <div
+        class="mf-field"
+        data-mf-field="engraving"
+        data-mf-watch="engrav"
+        data-mf-hide="^\s*(no engraving|none|no)\s*$"
+      >
+        <label class="mf-field__label" for="mf-engraving-{{ mf_uid }}">
+          <span data-mf-label>Engraving text</span>
+          <span class="mf-field__flag" data-mf-flag>Required</span>
+        </label>
+
+        <input
+          id="mf-engraving-{{ mf_uid }}"
+          class="mf-field__input"
+          type="text"
+          name="properties[Engraving text]"
+          maxlength="60"
+          autocomplete="off"
+          autocapitalize="words"
+          spellcheck="false"
+          aria-describedby="mf-engraving-help-{{ mf_uid }}"
+          data-mf-input
+          data-mf-required="true"
+        >
+
+        <p class="mf-field__meta">
+          <span class="mf-field__help" id="mf-engraving-help-{{ mf_uid }}" data-mf-help>
+            Typed exactly as you want it engraved — spelling, punctuation and capitals are copied as
+            written.
+          </span>
+          <span class="mf-field__count" aria-hidden="true"><span data-mf-count>0</span>/<span data-mf-max>60</span></span>
+        </p>
+
+        <p class="mf-field__error" data-mf-error hidden>Please tell us what you'd like engraved.</p>
+      </div>
+    {%- endif -%}
+
+    {%- if mf_height -%}
+      <div
+        class="mf-field"
+        data-mf-field="height"
+        data-mf-watch="height"
+        data-mf-show="custom"
+      >
+        <label class="mf-field__label" for="mf-height-{{ mf_uid }}">
+          <span data-mf-label>Your height, in inches</span>
+          <span class="mf-field__flag" data-mf-flag>Required</span>
+        </label>
+
+        <input
+          id="mf-height-{{ mf_uid }}"
+          class="mf-field__input mf-field__input--short"
+          type="number"
+          inputmode="decimal"
+          min="20"
+          max="40"
+          step="0.25"
+          name="properties[Custom height (inches)]"
+          autocomplete="off"
+          aria-describedby="mf-height-help-{{ mf_uid }}"
+          data-mf-input
+          data-mf-required="true"
+        >
+
+        <p class="mf-field__meta">
+          <span class="mf-field__help" id="mf-height-help-{{ mf_uid }}" data-mf-help>
+            Measured to the underside of the top. Anywhere between 20 and 40 inches. Standard is 28.
+          </span>
+        </p>
+
+        <p class="mf-field__error" data-mf-error hidden>Please tell us the height you need.</p>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <script>
+    (function () {
+      if (window.MurphyFormFields) return;
+      window.MurphyFormFields = true;
+
+      /* ------------------------------------------------------------------
+         The engraving field changes its label, help text and length limit
+         depending on which design the customer picked. First match wins.
+         ------------------------------------------------------------------ */
+      var RULES = [
+        {
+          test: /home sweet home|home and heart/i,
+          label: 'Add a name (optional)',
+          help: 'This design comes with the phrase as shown. If you would like a family name added with it, type it here.',
+          placeholder: 'The Conway Family',
+          max: 40,
+          required: false,
+        },
+        {
+          test: /monogram|initials/i,
+          label: 'Initials',
+          help: 'Up to three letters. A traditional monogram puts the surname initial in the centre — if you want a different order, write it the way you want it.',
+          placeholder: 'A C M',
+          max: 12,
+          required: true,
+        },
+        {
+          test: /two first names/i,
+          label: 'The two first names',
+          help: 'Engraved exactly as you type them, including whatever joins them.',
+          placeholder: 'Ashley & Allen',
+          max: 40,
+          required: true,
+        },
+        {
+          test: /last name/i,
+          label: 'Last name',
+          help: 'Engraved exactly as you type it — spelling and capitals are copied as written.',
+          placeholder: 'Conway',
+          max: 30,
+          required: true,
+        },
+      ];
+
+      var FALLBACK = {
+        label: 'Engraving text',
+        help: 'Typed exactly as you want it engraved — spelling, punctuation and capitals are copied as written.',
+        placeholder: '',
+        max: 60,
+        required: true,
+      };
+
+      function normalise(name) {
+        return String(name || '')
+          .replace(/^options\[/, '')
+          .replace(/\]$/, '')
+          .trim()
+          .toLowerCase();
+      }
+
+      /* Reads the variant options the customer currently has selected,
+         whether the theme is rendering them as dropdowns or as pills. */
+      function selectedOptions(form) {
+        var scope = form.closest('.product') || form.closest('product-info') || document;
+        var out = {};
+
+        scope
+          .querySelectorAll('variant-selects select, variant-radios select, .product-form__input select')
+          .forEach(function (el) {
+            out[normalise(el.name)] = el.value;
+          });
+
+        scope
+          .querySelectorAll(
+            'variant-selects input[type="radio"]:checked, variant-radios input[type="radio"]:checked, .product-form__input input[type="radio"]:checked'
+          )
+          .forEach(function (el) {
+            out[normalise(el.name)] = el.value;
+          });
+
+        return out;
+      }
+
+      function matchingValue(options, needle) {
+        var key = Object.keys(options).filter(function (k) {
+          return k.indexOf(needle) !== -1;
+        })[0];
+        return key === undefined ? null : String(options[key] || '').trim();
+      }
+
+      function applyRule(field, value) {
+        if (field.dataset.mfField !== 'engraving') return;
+
+        var rule = FALLBACK;
+        for (var i = 0; i < RULES.length; i++) {
+          if (value && RULES[i].test.test(value)) {
+            rule = RULES[i];
+            break;
+          }
+        }
+
+        var input = field.querySelector('[data-mf-input]');
+        var label = field.querySelector('[data-mf-label]');
+        var help = field.querySelector('[data-mf-help]');
+        var flag = field.querySelector('[data-mf-flag]');
+        var max = field.querySelector('[data-mf-max]');
+
+        if (label) label.textContent = rule.label;
+        if (help) help.textContent = rule.help;
+        if (input) {
+          input.placeholder = rule.placeholder;
+          input.maxLength = rule.max;
+          input.dataset.mfRequired = rule.required ? 'true' : 'false';
+          if (input.value.length > rule.max) input.value = input.value.slice(0, rule.max);
+        }
+        if (max) max.textContent = rule.max;
+        if (flag) flag.hidden = !rule.required;
+
+        updateCount(field);
+      }
+
+      function updateCount(field) {
+        var input = field.querySelector('[data-mf-input]');
+        var count = field.querySelector('[data-mf-count]');
+        if (input && count) count.textContent = input.value.length;
+      }
+
+      function refresh(wrap) {
+        var form = wrap.closest('form');
+        if (!form) return;
+
+        var options = selectedOptions(form);
+
+        wrap.querySelectorAll('[data-mf-field]').forEach(function (field) {
+          var needle = field.dataset.mfWatch;
+          var value = needle ? matchingValue(options, needle) : null;
+          var active;
+
+          if (value === null) {
+            /* This product has no such option. Show a field that is meant to
+               be always-on (engraving via tag); hide one that waits for a
+               specific selection (custom height). */
+            active = !field.dataset.mfShow;
+          } else if (field.dataset.mfShow) {
+            active = new RegExp(field.dataset.mfShow, 'i').test(value);
+          } else if (field.dataset.mfHide) {
+            active = !new RegExp(field.dataset.mfHide, 'i').test(value);
+          } else {
+            active = true;
+          }
+
+          field.hidden = !active;
+
+          /* Disabled inputs are not submitted, so a hidden field can never
+             attach an empty property to the order. */
+          var input = field.querySelector('[data-mf-input]');
+          if (input) input.disabled = !active;
+
+          if (active) {
+            applyRule(field, value);
+          } else {
+            var error = field.querySelector('[data-mf-error]');
+            if (error) error.hidden = true;
+            if (input) input.removeAttribute('aria-invalid');
+          }
+        });
+
+        /* Dynamic checkout buttons (Buy it now, Shop Pay) skip line item
+           properties entirely — an order placed through one would arrive
+           with no engraving text. Hide them wherever a field is in play. */
+        form.querySelectorAll('.shopify-payment-button').forEach(function (el) {
+          el.setAttribute('hidden', '');
+        });
+      }
+
+      function refreshAll() {
+        document.querySelectorAll('[data-mf-fields]').forEach(refresh);
+      }
+
+      /* Delegated listeners, so everything keeps working after the theme
+         re-renders the variant picker. --------------------------------- */
+      document.addEventListener('change', function (event) {
+        if (event.target.closest('[data-mf-fields]')) return;
+        refreshAll();
+      });
+
+      document.addEventListener('input', function (event) {
+        var field = event.target.closest('[data-mf-field]');
+        if (!field) return;
+        updateCount(field);
+        if (event.target.value.trim()) {
+          var error = field.querySelector('[data-mf-error]');
+          if (error) error.hidden = true;
+          event.target.removeAttribute('aria-invalid');
+        }
+      });
+
+      /* Validation. The theme's form carries novalidate and handles its own
+         submit, so this runs in the capture phase on document — which fires
+         before anything bound to the form itself. ---------------------- */
+      document.addEventListener(
+        'submit',
+        function (event) {
+          var form = event.target;
+          if (!form || !form.querySelector) return;
+
+          var wrap = form.querySelector('[data-mf-fields]');
+          if (!wrap) return;
+
+          var missing = [];
+
+          wrap.querySelectorAll('[data-mf-field]').forEach(function (field) {
+            if (field.hidden) return;
+            var input = field.querySelector('[data-mf-input]');
+            if (!input || input.dataset.mfRequired !== 'true') return;
+            if (!input.value.trim()) missing.push({ field: field, input: input });
+          });
+
+          if (!missing.length) return;
+
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          missing.forEach(function (item) {
+            var error = item.field.querySelector('[data-mf-error]');
+            if (error) error.hidden = false;
+            item.input.setAttribute('aria-invalid', 'true');
+          });
+
+          missing[0].field.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          missing[0].input.focus({ preventScroll: true });
+        },
+        true
+      );
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', refreshAll);
+      } else {
+        refreshAll();
+      }
+
+      document.addEventListener('shopify:section:load', refreshAll);
+    })();
+  </script>
+{%- endif -%}
