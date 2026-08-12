@@ -56,6 +56,12 @@
           class="product-variant-id"
         >
 
+        {%- comment -%}
+          Murphy & Form — engraving text and custom height.
+          Must sit inside this form so the values reach the cart and the order.
+        {%- endcomment -%}
+        {%- render 'murphy-form-custom-fields', product: product, section_id: section_id -%}
+
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
