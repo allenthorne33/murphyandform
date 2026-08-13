@@ -169,7 +169,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shipping and returns",
-            "button_link": "",
+            "button_link": "shopify://pages/shipping-and-returns",
             "button_style_secondary": true,
             "button_label_2": "",
             "button_link_2": "",
