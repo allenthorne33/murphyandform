@@ -32,7 +32,7 @@
             "button_link": "shopify://collections/all",
             "button_style_secondary": false,
             "button_label_2": "What we believe",
-            "button_link_2": "",
+            "button_link_2": "shopify://pages/what-we-believe",
             "button_style_secondary_2": true
           }
         }
