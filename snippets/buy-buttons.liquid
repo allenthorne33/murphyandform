@@ -24,6 +24,12 @@
       endif
     -%}
 
+    {%- comment -%} Murphy & Form — is this piece on preorder, and until when? {%- endcomment -%}
+    {%- capture mf_preorder -%}
+      {%- render 'murphy-form-preorder-date', product: product -%}
+    {%- endcapture -%}
+    {%- assign mf_preorder = mf_preorder | strip -%}
+
     <product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -93,6 +99,8 @@
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
+              {%- elsif mf_preorder != blank -%}
+                Preorder — ships by {{ mf_preorder }}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
@@ -103,6 +111,19 @@
             {{ form | payment_button }}
           {%- endif -%}
         </div>
+
+        {%- comment -%}
+          Murphy & Form — the promise that sits under a preorder button.
+          Says the date, says you're charged now, and says what happens if we
+          miss it. All three, before they buy rather than after.
+        {%- endcomment -%}
+        {%- if mf_preorder != blank -%}
+          <p class="mf-preorder-note">
+            Expected to ship <strong>no later than {{ mf_preorder }}</strong>. You're charged
+            today, the same as any order. If we're going to miss that date we'll tell you before
+            it passes, and you can cancel for a full refund however far along we are.
+          </p>
+        {%- endif -%}
       {%- endform -%}
     </product-form>
   {%- else -%}

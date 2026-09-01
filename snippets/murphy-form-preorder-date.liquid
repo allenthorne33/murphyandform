@@ -1,0 +1,49 @@
+{%- comment -%}
+  ==========================================================================
+  Murphy & Form — preorder date
+  --------------------------------------------------------------------------
+  The single source of truth for whether something is on preorder.
+  Outputs a ship-by date, or nothing at all.
+
+  ┌────────────────────────────────────────────────────────────────────────┐
+  │  TO PUT THE WHOLE SHOP ON PREORDER                                     │
+  │  Put a date between the quotes on the mf_shop_preorder line below.     │
+  │  Write it the way you'd say it out loud:                              │
+  │                                                                        │
+  │      assign mf_shop_preorder = 'October 15'                            │
+  │                                                                        │
+  │  TO TURN IT OFF                                                        │
+  │  Make it empty again:                                                  │
+  │                                                                        │
+  │      assign mf_shop_preorder = ''                                      │
+  └────────────────────────────────────────────────────────────────────────┘
+
+  TO PUT ONE PRODUCT ON PREORDER, leave the line above empty and tag that
+  product in Shopify:
+
+      preorder:October 15
+
+  A product's own tag always wins over the shop-wide setting, so you can put
+  the shop on preorder for the 15th and still promise the 8th on one item
+  that's already half built.
+
+  Nothing here charges differently or changes inventory. It changes what the
+  customer is told, which is the part that matters.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign mf_shop_preorder = ''
+
+  assign mf_result = mf_shop_preorder
+
+  if product != blank
+    for mf_tag in product.tags
+      assign mf_lower = mf_tag | downcase
+      if mf_lower contains 'preorder:'
+        assign mf_result = mf_tag | split: ':' | last | strip
+      endif
+    endfor
+  endif
+-%}
+{{- mf_result -}}

@@ -1,0 +1,27 @@
+{%- comment -%}
+  ==========================================================================
+  Murphy & Form — preorder bar
+  --------------------------------------------------------------------------
+  A thin strip above the header, on every page. It appears only when the shop
+  is on preorder, and vanishes the moment it isn't. There is nothing to
+  switch off here — the switch lives in murphy-form-preorder-date.liquid.
+
+  This is deliberately the only thing that ever occupies that strip. A bar
+  that's always there gets ignored. A bar that appears only when there's real
+  news gets read.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- capture mf_preorder_until -%}
+  {%- render 'murphy-form-preorder-date' -%}
+{%- endcapture -%}
+{%- assign mf_preorder_until = mf_preorder_until | strip -%}
+
+{%- if mf_preorder_until != blank -%}
+  <div class="mf-preorder-bar" role="region" aria-label="Shop status">
+    <p class="mf-preorder-bar__text">
+      The shop is full, so we're taking preorders. Anything ordered now ships
+      <strong>no later than {{ mf_preorder_until }}</strong>.
+    </p>
+  </div>
+{%- endif -%}
