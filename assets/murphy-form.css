@@ -568,6 +568,64 @@ a.link--text {
   display: none !important;
 }
 
+/* ==========================================================================
+   PREORDER (batch four)
+   The bar above the header, and the note under a preorder button. Both are
+   rendered only while the shop is actually on preorder — see
+   snippets/murphy-form-preorder-date.liquid.
+   ========================================================================== */
+
+.mf-preorder-bar {
+  background-color: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  padding: 1.2rem 2rem;
+  text-align: center;
+}
+
+.mf-preorder-bar__text {
+  margin: 0 auto;
+  max-width: 70ch;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+/* The date is the only part anyone needs to remember. */
+.mf-preorder-bar__text strong {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 749px) {
+  .mf-preorder-bar {
+    padding: 1rem 1.6rem;
+  }
+
+  .mf-preorder-bar__text {
+    font-size: 1.2rem;
+  }
+}
+
+/* The note under the button. Quiet — the button already said the headline. */
+.mf-preorder-note {
+  margin: 1.4rem 0 0;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  opacity: 0.78;
+  max-width: 54ch;
+}
+
+.mf-preorder-note strong {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* A preorder button carries a longer label than "Add to cart", so let it
+   wrap gracefully on a phone instead of overflowing. */
+.product-form__submit span {
+  white-space: normal;
+}
+
 /* The engraved boards are read on a phone more often than a desktop. */
 @media screen and (max-width: 749px) {
   .mf-field__meta {
