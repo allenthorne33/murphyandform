@@ -4,21 +4,55 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "about": {
+          "type": "text",
+          "settings": {
+            "heading": "Murphy & Form",
+            "subtext": "<p>Solid hardwood furniture, made by hand in New Braunfels, Texas. Made to order, and shipped within ten business days.</p>"
+          }
+        },
+        "shop_menu": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "footer-shop"
+          }
+        },
+        "company_menu": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Company",
+            "menu": "footer-company"
+          }
+        },
+        "contact": {
+          "type": "text",
+          "settings": {
+            "heading": "Questions",
+            "subtext": "<p><a href=\"mailto:murphyandformsupport@gmail.com\">murphyandformsupport@gmail.com</a></p><p>Custom sizes, wood questions, or a piece you don't see here — write to us.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "about",
+        "shop_menu",
+        "company_menu",
+        "contact"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "New work, now and then.",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_language_selector": false,
         "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 40
       }
     }
   },
