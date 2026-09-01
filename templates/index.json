@@ -68,6 +68,53 @@
         "show_text_below": true
       }
     },
+    "torch_feature": {
+      "type": "image-with-text",
+      "blocks": {
+        "torch_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Nine inches deep.",
+            "heading_size": "h1"
+          }
+        },
+        "torch_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The Torch was built around a gap — the space beside a sofa or a bed where an ordinary side table won't fit. It holds a drink, a book and a lamp, then gets out of the way.</p><p>Solid hardwood, eight finishes, and a wireless charger under the top if you want one.</p>",
+            "text_style": "body"
+          }
+        },
+        "torch_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "See the Torch",
+            "button_link": "shopify://products/timber-torch-side-table",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "torch_heading",
+        "torch_text",
+        "torch_button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/timber-torch-side-table-05.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 72
+      }
+    },
     "how_we_work": {
       "type": "multicolumn",
       "blocks": {
@@ -75,7 +122,7 @@
           "type": "column",
           "settings": {
             "title": "Honest materials",
-            "text": "<p>Solid American hardwood — maple, walnut, mahogany — from sustainably managed US forests. Finished with Odie's Universal Oil: food safe, solvent free, no heavy metals. Every material is listed on every product page, including the ones that aren't glamorous.</p>",
+            "text": "<p>Solid American hardwood — maple, walnut, mahogany — from sustainably managed US forests. Finished with Odie's Universal Oil: food safe, with no petroleum solvents, no driers and no heavy metals. Every material is listed on every product page, including the ones that aren't glamorous.</p>",
             "link_label": "",
             "link": ""
           }
@@ -205,7 +252,7 @@
           "type": "button",
           "settings": {
             "button_label": "Read what we believe",
-            "button_link": "",
+            "button_link": "shopify://pages/what-we-believe",
             "button_style_secondary": true,
             "button_label_2": "",
             "button_link_2": "",
@@ -230,6 +277,7 @@
   "order": [
     "hero",
     "image_banner_mTKUN9",
+    "torch_feature",
     "how_we_work",
     "featured_collection",
     "promise",
