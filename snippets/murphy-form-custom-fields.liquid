@@ -103,7 +103,7 @@
         data-mf-show="custom"
       >
         <label class="mf-field__label" for="mf-height-{{ mf_uid }}">
-          <span data-mf-label>Your height, in inches</span>
+          <span data-mf-label>Height to the underside of the top</span>
           <span class="mf-field__flag" data-mf-flag>Required</span>
         </label>
 
@@ -115,7 +115,8 @@
           min="20"
           max="40"
           step="0.25"
-          name="properties[Custom height (inches)]"
+          name="properties[Height to underside (inches)]"
+          placeholder="28"
           autocomplete="off"
           aria-describedby="mf-height-help-{{ mf_uid }}"
           data-mf-input
@@ -124,7 +125,9 @@
 
         <p class="mf-field__meta">
           <span class="mf-field__help" id="mf-height-help-{{ mf_uid }}" data-mf-help>
-            Measured to the underside of the top. Anywhere between 20 and 40 inches. Standard is 28.
+            Not the overall height — the clearance underneath, which is the dimension that has to fit
+            over your sofa arm or mattress. Measure that, then tell us the number. In inches, between
+            20 and 40. Standard is 28.
           </span>
         </p>
 
