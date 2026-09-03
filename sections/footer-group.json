@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -9,7 +18,7 @@
           "type": "text",
           "settings": {
             "heading": "Murphy & Form",
-            "subtext": "<p>Solid hardwood furniture, made by hand in New Braunfels, Texas. Made to order, and shipped within ten business days.</p><p>If you knew us as FourSquare Woodworks — same shop, same hands, new name.</p>"
+            "subtext": "<p>Solid hardwood furniture, made by hand in New Braunfels, Texas. Made to order, and shipped within ten business days.</p><p>If you knew us as FourSquare Woodworks — new shop, new name,same hands.</p>"
           }
         },
         "shop_menu": {
