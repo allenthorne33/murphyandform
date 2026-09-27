@@ -28,8 +28,8 @@
         "hero_buttons": {
           "type": "button",
           "settings": {
-            "button_label": "Shop the collection",
-            "button_link": "shopify://collections/all",
+            "button_label": "Shop everything",
+            "button_link": "shopify://collections",
             "button_style_secondary": false,
             "button_label_2": "What we believe",
             "button_link_2": "shopify://pages/what-we-believe",
