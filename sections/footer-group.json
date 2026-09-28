@@ -52,7 +52,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "New work, now and then.",
+        "newsletter_heading": "<strong>Subscribe for news</strong>",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
