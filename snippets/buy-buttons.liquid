@@ -100,7 +100,7 @@
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
               {%- elsif mf_preorder != blank -%}
-                Preorder — ships by {{ mf_preorder }}
+                Preorder — ships within {{ mf_preorder }}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
@@ -119,7 +119,7 @@
         {%- endcomment -%}
         {%- if mf_preorder != blank -%}
           <p class="mf-preorder-note">
-            Expected to ship <strong>no later than {{ mf_preorder }}</strong>. You're charged
+            Expected to ship <strong>within {{ mf_preorder }}</strong>. You're charged
             today, the same as any order. If we're going to miss that date we'll tell you before
             it passes, and you can cancel for a full refund however far along we are.
           </p>

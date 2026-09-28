@@ -3,14 +3,14 @@
   Murphy & Form — preorder date
   --------------------------------------------------------------------------
   The single source of truth for whether something is on preorder.
-  Outputs a ship-by date, or nothing at all.
+  Outputs a lead time, or nothing at all.
 
   ┌────────────────────────────────────────────────────────────────────────┐
   │  TO PUT THE WHOLE SHOP ON PREORDER                                     │
-  │  Put a date between the quotes on the mf_shop_preorder line below.     │
+  │  Put a lead time between the quotes on the line below.                 │
   │  Write it the way you'd say it out loud:                              │
   │                                                                        │
-  │      assign mf_shop_preorder = 'October 15'                            │
+  │      assign mf_shop_preorder = '20 business days'                      │
   │                                                                        │
   │  TO TURN IT OFF                                                        │
   │  Make it empty again:                                                  │
@@ -21,11 +21,11 @@
   TO PUT ONE PRODUCT ON PREORDER, leave the line above empty and tag that
   product in Shopify:
 
-      preorder:October 15
+      preorder:12 business days
 
   A product's own tag always wins over the shop-wide setting, so you can put
-  the shop on preorder for the 15th and still promise the 8th on one item
-  that's already half built.
+  the whole shop at twenty days and still promise twelve on one item that's
+  already half built.
 
   Nothing here charges differently or changes inventory. It changes what the
   customer is told, which is the part that matters.
