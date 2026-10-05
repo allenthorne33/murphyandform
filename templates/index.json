@@ -187,8 +187,8 @@
         "speed": {
           "type": "column",
           "settings": {
-            "title": "Made to order, shipped in days",
-            "text": "<p>Most makers quote two to three months. Everything leaves our shop within ten business days — boards, side tables, consoles, coffee tables alike. Made by hand, one at a time, and still on your floor this month.</p>",
+            "title": "Made to order, shipped in weeks",
+            "text": "<p>Most makers quote two to three months. Right now everything leaves our shop within 20 business days — boards, side tables, consoles, coffee tables alike. Made by hand, one at a time, and a season sooner than anyone else will quote you.</p>",
             "link_label": "",
             "link": ""
           }
