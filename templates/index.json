@@ -81,7 +81,7 @@
         "torch_text": {
           "type": "text",
           "settings": {
-            "text": "<p>The Torch was built around a gap — the space beside a sofa or a bed where an ordinary side table won't fit. It holds a drink, a book and a lamp, then gets out of the way.</p><p>Solid hardwood, eight finishes, and a wireless charger under the top if you want one.</p>",
+            "text": "<p>The Torch was built around a gap — the space beside a sofa or a bed where an ordinary side table won't fit. It holds a drink, a book and a lamp, then gets out of the way.</p><p>Solid hardwood, several finishes, and a wireless charger under the top if you want one.</p>",
             "text_style": "body"
           }
         },
